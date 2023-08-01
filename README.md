@@ -113,12 +113,12 @@ python follow_anything.py  --desired_height 240 --desired_width 320 --path_to_vi
 ## Example usage on a video stream and a drone
 All you need is to pick the relevant command as explained in the section above and add the flags ```--path_to_video rtsp://192.168.144.10:8554/H264Video --fly_drone --port ttyUSB0 --baud 57600```: 
 
-```--path_to_video rtsp://192.168.144.10:8554/H264Video```: path the to stream.
+```--path_to_video rtsp://192.168.144.10:8554/H264Video```: Path the to stream.
 
-```--fly_drone``` indication to fly the drone.
+```--fly_drone```: Indication to fly the drone.
 
 ```--port ttyUSB0```: The used port for connecting to the drone.
 
-```--baud 57600```: baud rate.
+```--baud 57600```: Baud rate.
 
     
