@@ -1,0 +1,30 @@
+ninja_required_version = 1.3
+cxx = c++
+nvcc = /usr/bin/nvcc
+
+cflags = -pthread -B /home/rbdlab1/anaconda3/envs/newtracker/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -O2 -Wall -fPIC -O2 -isystem /home/rbdlab1/anaconda3/envs/newtracker/include -I/home/rbdlab1/anaconda3/envs/newtracker/include -fPIC -O2 -isystem /home/rbdlab1/anaconda3/envs/newtracker/include -fPIC -DUSE_CUDA -I/home/rbdlab1/anaconda3/envs/newtracker/lib/python3.9/site-packages/torch/include -I/home/rbdlab1/anaconda3/envs/newtracker/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/home/rbdlab1/anaconda3/envs/newtracker/lib/python3.9/site-packages/torch/include/TH -I/home/rbdlab1/anaconda3/envs/newtracker/lib/python3.9/site-packages/torch/include/THC -I/home/rbdlab1/anaconda3/envs/newtracker/include/python3.9 -c
+post_cflags = -fopenmp -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=spatial_correlation_sampler_backend -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+cuda_cflags = -DUSE_CUDA -I/home/rbdlab1/anaconda3/envs/newtracker/lib/python3.9/site-packages/torch/include -I/home/rbdlab1/anaconda3/envs/newtracker/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/home/rbdlab1/anaconda3/envs/newtracker/lib/python3.9/site-packages/torch/include/TH -I/home/rbdlab1/anaconda3/envs/newtracker/lib/python3.9/site-packages/torch/include/THC -I/home/rbdlab1/anaconda3/envs/newtracker/include/python3.9 -c
+cuda_post_cflags = -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=spatial_correlation_sampler_backend -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_70,code=compute_70 -gencode=arch=compute_70,code=sm_70 -std=c++14
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+rule cuda_compile
+  depfile = $out.d
+  deps = gcc
+  command = $nvcc  $cuda_cflags -c $in -o $out $cuda_post_cflags
+
+
+
+build /home/rbdlab1/work/new_tracker/Segment-and-Track-Anything/Pytorch-Correlation-extension/build/temp.linux-x86_64-cpython-39/Correlation_Module/correlation.o: compile /home/rbdlab1/work/new_tracker/Segment-and-Track-Anything/Pytorch-Correlation-extension/Correlation_Module/correlation.cpp
+build /home/rbdlab1/work/new_tracker/Segment-and-Track-Anything/Pytorch-Correlation-extension/build/temp.linux-x86_64-cpython-39/Correlation_Module/correlation_cuda_kernel.o: cuda_compile /home/rbdlab1/work/new_tracker/Segment-and-Track-Anything/Pytorch-Correlation-extension/Correlation_Module/correlation_cuda_kernel.cu
+build /home/rbdlab1/work/new_tracker/Segment-and-Track-Anything/Pytorch-Correlation-extension/build/temp.linux-x86_64-cpython-39/Correlation_Module/correlation_sampler.o: compile /home/rbdlab1/work/new_tracker/Segment-and-Track-Anything/Pytorch-Correlation-extension/Correlation_Module/correlation_sampler.cpp
+
+
+
+
+

@@ -1,0 +1,4 @@
+# ninja log v5
+0	9260	1682337340064717076	/home/rbdlab1/work/new_tracker/Segment-and-Track-Anything/Pytorch-Correlation-extension/build/temp.linux-x86_64-cpython-39/Correlation_Module/correlation.o	34e59c5e63ffec8b
+1	10540	1682337341348716519	/home/rbdlab1/work/new_tracker/Segment-and-Track-Anything/Pytorch-Correlation-extension/build/temp.linux-x86_64-cpython-39/Correlation_Module/correlation_sampler.o	12ccb73330406013
+1	13154	1682337343956715744	/home/rbdlab1/work/new_tracker/Segment-and-Track-Anything/Pytorch-Correlation-extension/build/temp.linux-x86_64-cpython-39/Correlation_Module/correlation_cuda_kernel.o	f8458b8ab3bd89e7
