@@ -49,12 +49,20 @@ Please follow the instructions [here](https://pytorch.org/get-started/locally/) 
 
  2. Install the directory Segment-and-Track-Anything as explained in: https://github.com/z-x-yang/Segment-and-Track-Anything
 
+    Download:
+
+        a. SAM model to Segment-and-Track-Anything/ckpt directory, the default model is SAM-VIT-B (sam_vit_b_01ec64.pth).
+    
+        b. DeAOT/AOT model to Segment-and-Track-Anything/ckpt directory, the default model is R50-DeAOT-L (R50_DeAOTL_PRE_YTB_DAV.pth).
+
+
     Note - some files are slightly modified in the directory Segment-and-Track-Anything, hence, use the version provided in this directory.
+    
 
  4. If you wish to use SiamMask as a tracker (default is AOT from step "2") install SiamMask as detailed in: https://github.com/foolwood/SiamMask
 
      Note - some files are slightly modified in the directory Segment-and-Track-Anything, hence, use the version provided in this directory.
 
- 5. pip install mavsdk (you may need to do more simple pip installs for other libraries)
+ 5. pip install mavsdk (you may need to do more simple pip installs for other libraries).
 
     
