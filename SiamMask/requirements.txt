@@ -1,0 +1,16 @@
+Cython
+colorama
+numpy
+requests
+fire
+torch
+matplotlib
+numba
+scipy
+h5py
+pandas
+tqdm
+tensorboardX
+opencv_python
+torch
+torchvision
