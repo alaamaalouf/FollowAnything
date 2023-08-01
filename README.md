@@ -51,9 +51,9 @@ Please follow the instructions [here](https://pytorch.org/get-started/locally/) 
 
     Download:
 
-        a. SAM model to Segment-and-Track-Anything/ckpt directory, the default model is SAM-VIT-B (sam_vit_b_01ec64.pth).
+        2.1. SAM model to Segment-and-Track-Anything/ckpt directory, the default model is SAM-VIT-B (sam_vit_b_01ec64.pth).
     
-        b. DeAOT/AOT model to Segment-and-Track-Anything/ckpt directory, the default model is R50-DeAOT-L (R50_DeAOTL_PRE_YTB_DAV.pth).
+        2.2. DeAOT/AOT model to Segment-and-Track-Anything/ckpt directory, the default model is R50-DeAOT-L (R50_DeAOTL_PRE_YTB_DAV.pth).
 
 
     Note - some files are slightly modified in the directory Segment-and-Track-Anything, hence, use the version provided in this directory.
@@ -64,5 +64,51 @@ Please follow the instructions [here](https://pytorch.org/get-started/locally/) 
      Note - some files are slightly modified in the directory Segment-and-Track-Anything, hence, use the version provided in this directory.
 
  5. pip install mavsdk (you may need to do more simple pip installs for other libraries).
+
+
+## Example usage
+First, we show how to run the system, without the drone or the online stream, i.e., we show how to detect and track a desired object from a video.
+
+1. To manually detect and track a desired object by a bounding box: 
+```
+python follow_anything.py  --desired_height 240 --desired_width 320 --path_to_video <PATH TO VIDEO> --save_images_to outputs/ --detect box --redetect_by box --tracker aot --plot_visualizations
+```
+        a. --desired_height and desired_height: the desired image width and height to work with.
+
+        b. --path_to_video: full or relative path to the desired video.
+
+        c. --save_images_to: will store all outputs of "segmentations/tracking/detection" to the provided directory.
+
+        d. --detect: either by box, click, dino, or clip -- dino and clip require additional flags (see next section).
+
+        e. --tracker: either aot or SiamMask
+
+        f. --plot_visualizations: plots all stages visualizations. 
+
+2.   To automatically detect and track a desired object we apply the following two stages:
+
+     2.1 annotation phase - run:
+
+     
+     ```
+     python annotate_features.py --desired_height 240 --desired_width 320 --queries_dir <directory where to store the queries features> --path_to_images <path to a directory containing the images we wish to annotate>
+     ```
+     
+     2.1. Run the system with --detect dino -redetect_by dino
+     ```
+     python follow_anything.py  --desired_height 240 --desired_width 320 --path_to_video <PATH TO VIDEO> --save_images_to outputs/  --detect dino --redetect_by dino --use_sam --tracker aot --queries_dir <directory where you stored the queries features in step a>  --desired_feature <desired_label>  --plot_visualizations
+     ```
+           a. queries_dir: the directory where you stored the queries features in step a
+           b. desired_feature:  the label of the desired annotated object.
+           c. use_sam: use sam before detection to provide segmentation (slower but better) ---> You can remove this flag to get faster detection.
+
+4. For faster Dino detection performance add:
+``` --use_16bit --use_traced_model```  and remove ```--use_sam``` (this mode is less accurate but more efficient).
+7. To use text for detection add:
+```
+--detect clip --desired_feature <text explaining the desired feature as well as possible>  --use_sam  --text_query <text explaining the desired feature as well as possible, text explaining object two, ..., text explaining the last object in the scene>
+```     
+
+
 
     
