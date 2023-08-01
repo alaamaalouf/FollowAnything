@@ -4,7 +4,7 @@
 
 *[Alaa Maalouf](https://www.csail.mit.edu/person/alaa-maalouf), [Ninad Jadhav](https://react.seas.harvard.edu/people/ninad-jadhav), [Krishna Murthy Jatavallabhula](https://krrish94.github.io/), [Makram Chahine](https://www.mit.edu/~chahine/), [Daniel  M.Vogt](https://www.danielmvogt.com/), [Robert J. Wood](https://wyss.harvard.edu/team/associate-faculty/robert-wood/), [Antonio Torralba](https://groups.csail.mit.edu/vision/torralbalab/), and [Daniela Rus](https://danielarus.csail.mit.edu/)*
 
-![SAM design](Images_and_videos_for_Github_visualizations/teaser.png?raw=true)
+![FAn design](Images_and_videos_for_Github_visualizations/teaser.png?raw=true)
 
 
 
