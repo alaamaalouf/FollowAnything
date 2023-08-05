@@ -33,7 +33,6 @@
 
 
 
-
 ## Installation
 The code was tested with `python=3.9.12`, as well as `pytorch=1.9.0+cu102` and `torchvision=0.10.0+cu102`. 
 
@@ -61,13 +60,12 @@ Please follow the instructions [here](https://pytorch.org/get-started/locally/) 
 
  4. If you wish to use SiamMask as a tracker (default is AOT from step "2") install SiamMask as detailed in: https://github.com/foolwood/SiamMask
 
-     Note - some files are slightly modified in the directory Segment-and-Track-Anything, hence, use the version provided in this directory.
 
  5. pip install mavsdk (you may need to do more simple pip installs for other libraries).
 
 
 ## Example usage on offline video
-First, we show how to run the system, without the drone or the online stream, i.e., we show how to detect and track a desired object from a video.
+First, we show how to run the system, without the drone or online stream, i.e., we show how to detect and track a desired object from a video.
 
 1. To manually detect and track a desired object by a bounding box: 
 ```
@@ -113,7 +111,7 @@ python follow_anything.py  --desired_height 240 --desired_width 320 --path_to_vi
 ## Example usage on a video stream and a drone
 All you need is to pick the relevant command as explained in the section above and add the flags ```--path_to_video rtsp://192.168.144.10:8554/H264Video --fly_drone --port ttyUSB0 --baud 57600```: 
 
-```--path_to_video rtsp://192.168.144.10:8554/H264Video```: Path the to stream.
+```--path_to_video rtsp://192.168.144.10:8554/H264Video```: Path to the stream.
 
 ```--fly_drone```: Indication to fly the drone.
 
