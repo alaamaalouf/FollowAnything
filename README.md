@@ -38,13 +38,31 @@
 
 An input frame of $4$ whales with a click query on a whale and click query on water. 
 
-(1) In the first step, SAM extracts multiple masks (segmentations), then, 
+   1. In the first step, SAM extracts multiple masks (segmentations), then, 
 
-(2) based on DINO features (for text queries we use CLIP, and for audio queries, we could use AudioCLIP), FAn classifies each mask to what object it refers to from the given queries (water/whales).
+   2. based on DINO features (for text queries we use CLIP, and for audio queries, we could use AudioCLIP), FAn classifies each mask to what object it          refers to from the given queries (water/whales).
 
-(3) Finally, whales are detected by assigning the masks whose DINO feature descriptor is closest to the whales' query feature descriptor. 
+   3. Finally, whales are detected by assigning the masks whose DINO feature descriptor is closest to the whales' query feature descriptor. 
 
 NOTE: The heat maps are shown in the click (query figures).
+
+## Automatic re-detection
+
+![FAn approach](Images_and_videos_for_Github_visualizations/redetection_example.png?raw=true)
+
+FAn supports Automatic re-detection via cross-trajectory stored ViT features.
+
+1. At every frame, FAn stores the DINO features representing the tracked object. 
+
+2. Once the object is lost, FAn either applies a segmentation model or gets suggested masks from the tracker.
+
+3. For every mask, FAn computes the DINO/CLIP descriptors, and 
+
+4. Compares it to the pre-computed ones.
+
+   a. If a high similarity is obtained:  keep tracking the object,
+
+   b. else" GOTO step (3) again on the next frame.
 
 ## Installation
 The code was tested with `python=3.9.12`, as well as `pytorch=1.9.0+cu102` and `torchvision=0.10.0+cu102`. 
