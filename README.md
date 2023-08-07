@@ -32,6 +32,13 @@
 
 
 
+## FAn approach:
+
+![FAn approach](Images_and_videos_for_Github_visualizations/example_visualize.png?raw=true)
+
+An input frame of $4$ whales with a click query on a whale and click query on water. (1) In the first step, SAM extracts multiple masks (segmentations), then, (2) based on DINO features, FAn classifies each mask to what object it refers from the given queries (water/whales). (3) Finally, whales are detected by assigning the masks whose DINO feature descriptor is closest to the whales' query feature descriptor. 
+
+NOTE: The heat maps are shown in the click (query figures).
 
 ## Installation
 The code was tested with `python=3.9.12`, as well as `pytorch=1.9.0+cu102` and `torchvision=0.10.0+cu102`. 
