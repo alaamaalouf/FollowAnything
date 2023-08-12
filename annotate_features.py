@@ -61,7 +61,7 @@ if __name__ == "__main__":
     if not os.path.exists(cfg['queries_dir']):
         os.mkdir(cfg['queries_dir'])
 
-    model = get_detector_model(cfg = cfg, device = device)
+    model = get_dino_pixel_wise_features_model(cfg = cfg, device = device)
 
 
     #traced_16 = torch.jit.trace(model, torch.randn(img.shape).half().to("cuda"))
