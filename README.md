@@ -95,6 +95,19 @@ Please follow the instructions [here](https://pytorch.org/get-started/locally/) 
  5. pip install mavsdk (you may need to do more simple pip installs for other libraries).
 
 
+## Example Commands
+
+1. ```
+   python follow_anything.py --desired_height 240 --desired_width 320 --path_to_video example_videos/car_following.avi --save_images_to outputs/ --detect dino --redetect_by tracker --use_sam --tracker aot --queries_dir queries/toy_car_following --desired_feature 0 --plot_visualization
+   ```
+3. ```
+   python follow_anything.py --desired_height 240 --desired_width 320 --path_to_video example_videos/brick_following.avi --save_images_to outputs/ --detect dino --use_sam --tracker aot --queries_dir queries/brick_following/ --desired_feature 7 --plot_visualizations
+   ```
+5. ```
+   python follow_anything.py --desired_height 240 --desired_width 320 --path_to_video example_videos/car_following.avi --save_images_to outputs/ --detect box --redetect_by box --use_sam --tracker aot --queries_dir queries/toy_car_following --desired_feature 0 --plot_visualization
+```
+
+
 ## Example usage on offline video
 First, we show how to run the system, without the drone or online stream, i.e., we show how to detect and track a desired object from a video.
 
