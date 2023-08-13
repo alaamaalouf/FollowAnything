@@ -246,6 +246,9 @@ def automatic_object_detection(vit_model, sam, video, queries, cfg, vehicle):
             read_one_frame = False
             while not read_one_frame:
                 read_one_frame, frame = video.read()
+                if not read_one_frame and os.path.exists(cfg["path_to_video"]) and cfg['fps']<1:
+                    print("Finished reading video...")
+                    exit(0)
 
             
             frameshow = cv2.resize(frame, (cfg['desired_width'],cfg['desired_height']))
@@ -778,6 +781,9 @@ def track_object_with_aot(tracker, pred_mask, frame,  video, cfg, vehicle, track
             read_one_frame = False
             while not read_one_frame:
                 read_one_frame, frame = video.read()
+                if not read_one_frame and os.path.exists(cfg["path_to_video"]) and cfg['fps']<1:
+                    print("Finished reading video...")
+                    exit(0)
 
             frame = cv2.resize(frame, (cfg['desired_width'],cfg['desired_height']))
         
@@ -880,6 +886,7 @@ def start_mission(device, tracker_cfg, cfg, tracker, detector, segmentor, querie
             start_mission(device, tracker_cfg, cfg, tracker, 
                           detector, segmentor, queries, 
                           video, vehicle)
+
 if __name__ == '__main__':
     # Setup device
 
