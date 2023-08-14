@@ -167,7 +167,7 @@ All you need is to pick the relevant command as explained in the section above a
 
 ## :hearts: Acknowledgment
 
-This project is based on the following awesome works [Segment-and-Track-Anything](https://github.com/z-x-yang/Segment-and-Track-Anything), [dino-vit-features](https://github.com/ShirAmir/dino-vit-features), and [SAM](https://github.com/facebookresearch/segment-anything). 
+This project is based on the following awesome works [Segment-and-Track-Anything](https://github.com/z-x-yang/Segment-and-Track-Anything), [dino-vit-features](https://github.com/ShirAmir/dino-vit-features), [ConceptFusion](https://github.com/concept-fusion/concept-fusion), and [SAM](https://github.com/facebookresearch/segment-anything). 
 
 Thanks for these amazing contributions!
 
