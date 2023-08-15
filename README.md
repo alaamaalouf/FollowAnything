@@ -35,7 +35,7 @@
 
 
 
-## 🤔 FAn approach:
+## 🤔 FAn approach
 
 ![FAn approach](Images_and_videos_for_Github_visualizations/example_visualize.png?raw=true)
 
