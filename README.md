@@ -1,8 +1,11 @@
 # Follow Anything
+**[📰 Paper](https://arxiv.org/abs/2308.05737)** | **[📹 Explainer Video](https://www.youtube.com/watch?v=6Mgt3EPytrw)**
+#### *Follow Anything:* Open-set detection, tracking, and following in real-time.
 
-**[1 CSAIL, MIT](https://www.csail.mit.edu/)**  | **[2 SEAS, Harvard](https://www.csail.mit.edu/](https://seas.harvard.edu/)https://seas.harvard.edu/)**
 
-*[Alaa Maalouf](https://www.csail.mit.edu/person/alaa-maalouf), [Ninad Jadhav](https://react.seas.harvard.edu/people/ninad-jadhav), [Krishna Murthy Jatavallabhula](https://krrish94.github.io/), [Makram Chahine](https://www.mit.edu/~chahine/), [Daniel  M.Vogt](https://www.danielmvogt.com/), [Robert J. Wood](https://wyss.harvard.edu/team/associate-faculty/robert-wood/), [Antonio Torralba](https://groups.csail.mit.edu/vision/torralbalab/), and [Daniela Rus](https://danielarus.csail.mit.edu/)*
+🏛️ **[1 CSAIL, MIT](https://www.csail.mit.edu/)**  | **[2 SEAS, Harvard](https://www.csail.mit.edu/](https://seas.harvard.edu/)https://seas.harvard.edu/)**
+
+✍️ *[Alaa Maalouf](https://www.csail.mit.edu/person/alaa-maalouf), [Ninad Jadhav](https://react.seas.harvard.edu/people/ninad-jadhav), [Krishna Murthy Jatavallabhula](https://krrish94.github.io/), [Makram Chahine](https://www.mit.edu/~chahine/), [Daniel  M.Vogt](https://www.danielmvogt.com/), [Robert J. Wood](https://wyss.harvard.edu/team/associate-faculty/robert-wood/), [Antonio Torralba](https://groups.csail.mit.edu/vision/torralbalab/), and [Daniela Rus](https://danielarus.csail.mit.edu/)* ✍️
 
 ![FAn design](Images_and_videos_for_Github_visualizations/teaser.png?raw=true)
 
@@ -11,7 +14,7 @@
 *FAn* - Follow Anything is a robotic system to detect, track, and follow any object in real-time while accounting for occlusion and object re-emergence. 
 *FAn* is an open-vocabulary and multimodal system -- it is not restricted to concepts seen at training time and can be initialized/queried using text, images, or clicks.  
 
-## Demo Videos
+## 📹 Demo Videos
 
 1. Car following and re-detecting: 
 <p align="center">
@@ -32,7 +35,7 @@
 
 
 
-## FAn approach:
+## 🤔 FAn approach:
 
 ![FAn approach](Images_and_videos_for_Github_visualizations/example_visualize.png?raw=true)
 
@@ -167,9 +170,25 @@ All you need is to pick the relevant command as explained in the section above a
 
 ## :hearts: Acknowledgment
 
-This project is based on the following awesome works [Segment-and-Track-Anything](https://github.com/z-x-yang/Segment-and-Track-Anything), [dino-vit-features](https://github.com/ShirAmir/dino-vit-features), [ConceptFusion](https://github.com/concept-fusion/concept-fusion), and [SAM](https://github.com/facebookresearch/segment-anything). 
+This project is based on the following awesome works [Segment-and-Track-Anything](https://github.com/z-x-yang/Segment-and-Track-Anything), [dino-vit-features](https://github.com/ShirAmir/dino-vit-features), [ConceptFusion](https://github.com/concept-fusion/concept-fusion), [SiamMask](https://github.com/foolwood/SiamMask), and [SAM](https://github.com/facebookresearch/segment-anything). 
 
 Thanks for these amazing contributions!
+
+## 🖋️ Citations
+
+Please consider citing our paper and the related paper(s) (see links) in your publications if it helps your research.
+
+```
+@article{maalouf2023follow,
+  title={Follow Anything: Open-set detection, tracking, and following in real-time},
+  author={Maalouf, Alaa and Jadhav, Ninad and Jatavallabhula, Krishna Murthy and Chahine, Makram and Vogt, Daniel M and Wood, Robert J and Torralba, Antonio and Rus, Daniela},
+  journal={arXiv preprint arXiv:2308.05737},
+  year={2023}
+}
+
+
+```
+
 
 
     
