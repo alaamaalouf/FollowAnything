@@ -140,7 +140,7 @@ python follow_anything.py  --desired_height 240 --desired_width 320 --path_to_vi
      python annotate_features.py --desired_height 240 --desired_width 320 --queries_dir <directory where to store the queries features> --path_to_images <path to a directory containing the images we wish to annotate>
      ```
      
-     2.1. Run the system with --detect dino -redetect_by dino
+     2.2. Run the system with --detect dino -redetect_by dino
      ```
      python follow_anything.py  --desired_height 240 --desired_width 320 --path_to_video <PATH TO VIDEO> --save_images_to outputs/  --detect dino --redetect_by dino --use_sam --tracker aot --queries_dir <directory where you stored the queries features in step a>  --desired_feature <desired_label>  --plot_visualizations
      ```
