@@ -107,7 +107,7 @@ Please follow the instructions [here](https://pytorch.org/get-started/locally/) 
    python follow_anything.py --desired_height 240 --desired_width 320 --path_to_video example_videos/brick_following.avi --save_images_to outputs/ --detect dino --use_sam --tracker aot --queries_dir queries/brick_following/ --desired_feature 7 --plot_visualizations
    ```
 5. ```
-   python follow_anything.py --desired_height 240 --desired_width 320 --path_to_video example_videos/car_following.avi --save_images_to outputs/ --detect box --redetect_by box --use_sam --tracker aot  -plot_visualization
+   python follow_anything.py --desired_height 240 --desired_width 320 --path_to_video example_videos/car_following.avi --save_images_to outputs/ --detect box --redetect_by box --use_sam --tracker aot  --plot_visualizations
    ```
 
 
