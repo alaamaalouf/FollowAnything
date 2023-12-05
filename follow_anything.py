@@ -68,9 +68,9 @@ parser.add_argument('--path_to_video', default='video/whales.mp4', help='The pat
 parser.add_argument('--save_images_to', default=False, help='The path to save all semgentation/tracking frames')
 
 parser.add_argument('--video_order', default='any', help='')
-parser.add_argument('--class_threshold', default=0.7, help='Threshold below which similarity scores are assigned as not the same class')
+parser.add_argument('--class_threshold', default=0.4, help='Threshold below which similarity scores are assigned as not the same class')
 parser.add_argument('--similarity_thresh', default=0.1, help='Threshold below which similarity scores are to be set to zero')
-parser.add_argument('--min_area_size', default=100, help='')
+parser.add_argument('--min_area_size', default=200, help='')
 parser.add_argument('--metric',  default='closest_mean', help='Not suppoerted on all mode, leave as default')
 
 
@@ -274,15 +274,18 @@ def automatic_object_detection(vit_model, sam, video, queries, cfg, vehicle):
 
             #smoothing by mean
             if cfg['use_sam']:
+
                 cosine_similarity = torch.nn.CosineSimilarity()
                 class_labels = torch.zeros((frameshow.shape[0],frameshow.shape[1]))
                 thresh = torch.zeros((frameshow.shape[0],frameshow.shape[1]))
                 all_masks_sims = []
                 for ii,mask in enumerate(masks):
+                    if ii == 0: continue
                     mask_similarity = []
                     m = mask['segmentation']
                     if  cfg['detect'] == 'clip':
                         #if ii == 0: continue
+                        if ii == 0 or mask['area']< float(cfg['min_area_size']): continue
                         _x, _y, _w, _h = tuple(mask["bbox"])  # xywh bounding box
                         
                         img_roi = frameshow[_y : _y + _h, _x : _x + _w, :]
@@ -308,18 +311,15 @@ def automatic_object_detection(vit_model, sam, video, queries, cfg, vehicle):
                         mask_label = torch.argmax(torch.as_tensor(mask_similarity))  # 1, H, W 
                         
                         mask['label'] = tmp_map_dict[int(mask_label)]
-                        #print(tmp_map_dict[int(mask_label)])
-                        #print(m)
-                        #pred_mask = bool_mask_to_integer(m)
-                        #vis_mask = multiclass_vis(m, frameshow, 2, np_used = True)
-                        #plot_and_save_if_neded(cfg, vis_mask, 'Tracker-result',count,multiply = 255)
-                        #input()
                         class_labels[m] = int(mask_label) + 1
-                        if mask['label'] in cfg['desired_feature']:
+                        if mask['label'] in cfg['desired_feature'] and torch.max(torch.as_tensor(mask_similarity)) > float(cfg['class_threshold']):
                             thresh[m] = 1 
+                            
                     else:
                         all_masks_sims.append(mask_similarity[0]) 
-                        if float(mask_similarity[0]) > float(cfg['class_threshold']):  thresh[m] = 1 
+                        if float(mask_similarity[0]) > float(cfg['class_threshold']):  thresh[m] = 1
+
+                        
                 #if  len(queries.items()) == 1 and cfg['query_type'] == 'text':      #if mask_similarity[0] > 0.9:
                 #    sorted_sims = np.argsort(all_masks_sims)
                 #    for masks in masks[sorted_sims[:k]]
@@ -336,7 +336,7 @@ def automatic_object_detection(vit_model, sam, video, queries, cfg, vehicle):
                     similarity_rel[similarity_rel < cfg['similarity_thresh']] = 0.0
                     similarity_rel = similarity_rel.detach().cpu().numpy()
                     plot_similarity_if_neded(cfg, frame, similarity_rel, alpha = 0.5)
-                    ret, thresh = cv2.threshold(similarity_rel*255, cfg['class_threshold'], 255, 0)          
+                    ret, thresh = cv2.threshold(similarity_rel*255, cfg['class_threshold']*255, 255, 0)          
                 else:
                     similarities = []
                     tmp_map_dict = {}
@@ -362,13 +362,17 @@ def automatic_object_detection(vit_model, sam, video, queries, cfg, vehicle):
                         tmp_map_dict[_idx] = counter_item
                         counter_item+=1
                     similarities = torch.stack(similarities)
-                    class_labels = torch.argmax(similarities, dim=0)  # 1, H, W
-                    class_labels = class_labels[0]
-
+                    similarities_max = torch.max(similarities, dim=0)[0]
+                    class_labels = torch.argmax(similarities, dim=0)[0]  # 1, H, W
+                    
+                    idx_to_try = (similarities_max < float(cfg['class_threshold']))[0]
+                    class_labels[idx_to_try]  =  0
                     thresh = copy.deepcopy(class_labels)
                     for desired_feat in cfg['desired_feature']:
                         feat = tmp_map_dict[desired_feat]
+                        idx_to_try = (similarities_max < float(cfg['class_threshold']))[0]
                         thresh[thresh == feat] = 255
+                        thresh[idx_to_try]= 0
                     thresh[thresh != 255] = 0
                     
             
